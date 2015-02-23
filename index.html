@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Style Guide</title>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <h1>Style Guide</h1>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <section class="box">
+            <header>
+              <h3>Colors</h3>
+            </header>
+            <dl>
+              <dt>Body background:</dt>
+              <dd><span class="body-background-color">#999999 / rgb(153,153,153)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Area background:</dt>
+              <dd><span class="area-background-color">#cccccc / rgb(204,204,204)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Box background:</dt>
+              <dd><span class="">#f2f2f2 / rgb(242,242,242)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Box header / table odd row background:</dt>
+              <dd><span class="box-header-background-color">#e6e6e6 / rgb(230,230,230)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Actionable item:</dt>
+              <dd><span class="actionable-item-background-color">#4d4d4d / rgb(77,77,77) - font #f2f2f2</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Selected / active:</dt>
+              <dd><span class="active-background-color">#3B73B9 / rgb(59,115,185) - font #f2f2f2</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Selected / active (transparent):</dt>
+              <dd><span class="active-transparent-background-color">rgba(59,115,185,0.2)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Warning:</dt>
+              <dd><span class="warning-background-color">#F7931E / rgb(247,147,30) - font #f2f2f2</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Warning (transparent):</dt>
+              <dd><span class="warning-transparent-background-color">rgba(247,147,30, 0.2)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Danger:</dt>
+              <dd><span class="danger-background-color">#ff0000 / rgb(255,0,0) - font #f2f2f2</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Success:</dt>
+              <dd><span class="success-background-color">#4FA400 / rgb(79,164,0) - font #f2f2f2</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Alert:</dt>
+              <dd><span class="alert-background-color">#E2CC00 / rgb(226,204,0)</span></dd>
+            </dl>
+
+            <dl>
+              <dt>Anything white:</dt>
+              <dd>#f2f2f2 / rgb(242,242,242)</dd>
+            </dl>
+
+            <dl>
+              <dt>Anything black:</dt>
+              <dd>#000000 / rgb(0,0,0)</dd>
+            </dl>
+
+          </section>
+        </div>
+
+        <div class="col-sm-9">
+          <div class="area">
+            <header>
+              <h2 class="header-title">Area Title with actions</h2>
+              <ul class="header-right actions">
+                <li class="dropdown">
+                  <a class="action"><i class="fa fa-lg fa-caret-down"></i></a>
+                </li>
+                <li>
+                  <a class="action"><i class="fa fa-lg fa-close"></i></a>
+                </li>
+              </ul>
+            </header>
+
+            <section class="box">
+              <header>
+                <h3>Box with header inside an area</h3>
+              </header>
+              <p>Nothing to see here.</p>
+              <footer>
+
+                <ul class="tabs pull-right">
+                  <li><a class="feaux-button">Cancel</a></li>
+                  <li><a class="button">Submit</a></li>
+                </ul>
+
+              </footer>
+            </section>
+
+            <section class="box">
+              A "header-less" and "footer-less" box insead an area
+            </section>
+
+            <section class="box">
+              <header>
+                <h3>Spacing</h3>
+              </header>
+
+              <dl>
+                <dt>Standard spacing around items:</dt>
+                <dd>10px</dd>
+              </dl>
+
+              <dl>
+                <dt>Spacing around area headers:</dt>
+                <dd>20px</dd>
+              </dl>
+
+              <dl>
+                <dt>Spacing below "floating" items without a box (like what you're looking at now):</dt>
+                <dd>20px</dd>
+              </dl>
+
+              <dl>
+                <dt>Constrained spacing:</dt>
+                <dd>5px (shouldn't have to use this often)</dd>
+              </dl>
+
+              <dl>
+                <dt>Between tabs spacing:</dt>
+                <dd>
+                  <div>1px</div>
+                  <div>
+
+                    <ul class="tabs">
+                      <li><a class="button">Link 1</a></li>
+                      <li><a class="button">Link 2</a></li>
+                      <li><a class="button">Link 3</a></li>
+                      <li><a class="button">Link 4</a></li>
+                    </ul>
+
+                  </div>
+                </dd>
+              </dl>
+
+              <dl>
+                <dt>Between tab groups spacing:</dt>
+                <dd>
+                  <div>10px</div>
+                  <div>
+
+                    <div class="tab-group">
+                      <ul class="tabs">
+                        <li><a class="button">Link 1</a></li>
+                        <li><a class="button">Link 2</a></li>
+                        <li><a class="button">Link 3</a></li>
+                        <li><a class="button">Link 4</a></li>
+                      </ul>
+
+                      <ul class="tabs">
+                        <li><a class="button">Link 5</a></li>
+                        <li><a class="button">Link 6</a></li>
+                      </ul>
+
+                      <ul class="tabs">
+                        <li><a class="button">Link 7</a></li>
+                        <li><a class="button">Link 8</a></li>
+                        <li><a class="button">Link 9</a></li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </dd>
+              </dl>
+
+              <dl>
+                <dt>Standard Button size:</dt>
+                <dd>
+                  <div>Line height: 30px, Padding: 0px 10px</div>
+                  <div><a class="button">Button</a></div>
+                </dd>
+              </dl>
+
+              <dl>
+                <dt>Small Button size:</dt>
+                <dd>
+                  <div>Line height: 20px, Padding: 0px 5px</div>
+                  <div><a class="button small">Button</a></div>
+                </dd>
+              </dl>
+
+            </section>
+
+            <div class="row">
+              <div class="col-sm-8">
+                <section class="box">
+                  2/3 column inside of an area with a box
+                </section>
+              </div>
+
+              <div class="col-sm-4">
+                <section class="box">
+                  1/3 column inside of an area with a box
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="area">
+                <section class="box">
+                  Another area inside the same column
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <section class="box">
+                A box, NOT inside an area, but in the same column
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <section class="box">
+            <header>
+              <h3>Full Width (12 columns)</h3>
+            </header>
+            Some sections of the app could be full-screen, so they will take up all 12 columns.
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <section class="box">
+            <header>
+              <h3>Half Width (6 columns)</h3>
+            </header>
+            Some sections of the app will take up 1/2 of the width of their area.
+          </section>
+        </div>
+
+        <div class="col-sm-6">
+          <section class="box">
+            <header>
+              <h3>Half Width pt 2 (6 columns)</h3>
+            </header>
+            This is the other half of the area
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <section class="box">
+            <header>
+              <h3>Third Width (4 columns)</h3>
+            </header>
+            Sections INSIDE another section (for example, sections inside a 9 col
+            section) should never be smaller than 4 cols.
+          </section>
+        </div>
+
+        <div class="col-sm-8">
+          <section class="box">
+            <header>
+              <h3>Two-Thirds Width (8 columns)</h3>
+            </header>
+            Some sections of the app will take up 2/3 of the width of their area.
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-xs-3">
+          <section class="box">
+            <header>
+              <h3>Left Menu (3 col)</h3>
+            </header>
+            If there is a small menu on the left, it may be this small
+          </section>
+        </div>
+
+        <div class="col-sm-9 col-xs-9">
+          <section class="box">
+            <header>
+              <h3>9 col section when a small nav menu is on the left</h3>
+            </header>
+            This is a common view when navigating through well data, with the well
+            list on the left of the screen.
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <section class="box">
+            <header>
+              <h3 class="header-title">Title with actions</h3>
+              <ul class="header-right actions">
+                <li class="dropdown">
+                  <a class="action"><i class="fa fa-lg fa-caret-down"></i></a>
+                </li>
+                <li>
+                  <a class="action"><i class="fa fa-lg fa-close"></i></a>
+                </li>
+              </ul>
+            </header>
+            Nothing to see here.
+          </section>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="area">
+            <header>
+              <h2 class="header-title">Another Area With Title</h2>
+              <ul class="header-right actions">
+                <li>
+                  <a class="action"><i class="fa fa-lg fa-close"></i></a>
+                </li>
+              </ul>
+            </header>
+
+            <nav>
+              <ul class="tabs">
+                <li><a href="#" class="button">Navigation 1</a></li>
+                <li><a href="#" class="button active">Navigation 2</a></li>
+                <li><a href="#" class="button">Navigation 3</a></li>
+                <li><a href="#" class="button">Navigation 4</a></li>
+              </ul>
+            </nav>
+
+            <p>Nothing to see here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="area">
+            <table class="full">
+              <thead>
+                <tr>
+                  <th class="sortable minimal">
+                    <span class="fa-stack sorter">
+                      <i class="fa fa-sort fa-stack-1x"></i>
+                      <i class="fa fa-sort-up fa-stack-1x"></i>
+                    </span>
+                  </th>
+                  <th class="sortable">
+                    Sort Ascending
+                    <span class="fa-stack sorter">
+                      <i class="fa fa-sort fa-stack-1x"></i>
+                      <i class="fa fa-sort-up fa-stack-1x"></i>
+                    </span>
+                  </th>
+                  <th class="sortable">
+                    Sort Descending
+                    <span class="fa-stack sorter">
+                      <i class="fa fa-sort fa-stack-1x"></i>
+                      <i class="fa fa-sort-down fa-stack-1x"></i>
+                    </span>
+                  </th>
+                  <th class="sortable">
+                    Sortable Inactive
+                    <span class="fa-stack sorter">
+                      <i class="fa fa-sort fa-stack-1x"></i>
+                    </span>
+                  </th>
+                  <th>Unsortable column</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                <tr class="odd">
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                <tr class="odd">
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                <tr class="odd active">
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>Active row</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                </tr>
+                <tr class="odd active">
+                  <td colspan="5">
+                    <fieldset class="separator">
+                      <legend align="center">
+                        <ul class="tabs">
+                          <li><a class="button small"><i class="fa fa-arrow-up"></i></a></li>
+                          <li><a class="button small"><i class="fa fa-arrow-down"></i></a></li>
+                          <li><a class="button small"><i class="fa fa-compress"></i></a></li>
+                          <li><a class="button small"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                      </legend>
+                    </fieldset>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <section class="box">
+                          <header class="small">First Col</header>
+                          Quick View
+                        </section>
+                      </div>
+                      <div class="col-sm-4">
+                        <section class="box">
+                          <header class="small">Second Col</header>
+                          Quick View
+                        </section>
+                      </div>
+                      <div class="col-sm-4">
+                        <section class="box">
+                          <header class="small">Third Col</header>
+                          Quick View
+                        </section>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+                <tr class="odd">
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <td class="minimal"><i class="fa fa-check"></i></td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <section class="box">
+            <header>
+              <h3>Icons - <a href="fortawesome.github.io/Font-Awesome" target="_blank">FontAwesome</a></h3>
+            </header>
+
+            <div class="table-wrapper">
+              <table class="full">
+                <thead>
+                  <tr>
+                    <th class="minimal">
+                      <i class="fa fa-circle"></i>
+                    </th>
+                    <th>Icon Class</th>
+                    <th>Icon Uses</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <td colspan="3">It is possible to create custom icons using FontCustom if the need arises! Until that time, however, we can use the icons available in FontAwesome.</td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-check fa-lg"></i></td>
+                    <td>fa-check</td>
+                    <td>Success, complete</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-close fa-lg"></i></td>
+                    <td>fa-close</td>
+                    <td>Close window, cancel</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-arrow-right fa-lg"></i></td>
+                    <td>fa-arrow-right</td>
+                    <td>Scroll to the right, move right 1 item</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-arrow-left fa-lg"></i></td>
+                    <td>fa-arrow-left</td>
+                    <td>Scroll to the left, move left 1 item</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-arrow-up fa-lg"></i></td>
+                    <td>fa-arrow-up</td>
+                    <td>Scroll up, move up 1 item</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-arrow-down fa-lg"></i></td>
+                    <td>fa-arrow-down</td>
+                    <td>Scroll down, move down 1 item</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-caret-down fa-lg"></i></td>
+                    <td>fa-caret-down</td>
+                    <td>Dropdown / options menu toggle</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-exclamation-triangle fa-lg"></i></td>
+                    <td>fa-exclamation-triangle</td>
+                    <td>Critical error, danger (red)<br />Warning (orange)</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-exclamation-circle fa-lg"></i></td>
+                    <td>fa-exclamation-circle</td>
+                    <td>Notice (yellow)</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-building fa-lg"></i></td>
+                    <td>fa-building</td>
+                    <td>Company</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-calendar fa-lg"></i></td>
+                    <td>fa-calendar</td>
+                    <td>Datepicker / Dates</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-code fa-lg"></i></td>
+                    <td>fa-code</td>
+                    <td>Code snippet, code area, enter code</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-comments fa-lg"></i></td>
+                    <td>fa-comments</td>
+                    <td>Discussion / comment / dialog</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-compress fa-lg"></i></td>
+                    <td>fa-compress</td>
+                    <td>Minimize, shrink</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-expand fa-lg"></i></td>
+                    <td>fa-expand</td>
+                    <td>Maximize, expand, make focus</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-copy fa-lg"></i></td>
+                    <td>fa-copy</td>
+                    <td>Clone, copy, duplicate item</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-download fa-lg"></i></td>
+                    <td>fa-download</td>
+                    <td>Download file, download report</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-eye fa-lg"></i></td>
+                    <td>fa-eye</td>
+                    <td>"I want to watch this"</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-expand fa-lg"></i></td>
+                    <td>fa-expand</td>
+                    <td>Maximize, expand, make focus</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-copy fa-lg"></i></td>
+                    <td>fa-copy</td>
+                    <td>Clone, copy, duplicate item</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-exchange fa-lg"></i></td>
+                    <td>fa-exchange</td>
+                    <td>Synchronize data, communicate w/ device</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-save fa-lg"></i></td>
+                    <td>fa-save</td>
+                    <td>Save</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-gear fa-lg"></i></td>
+                    <td>fa-gear</td>
+                    <td>Settings, configuration</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-heartbeat fa-lg"></i></td>
+                    <td>fa-heartbeat</td>
+                    <td>Status, health</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-history fa-lg"></i></td>
+                    <td>fa-history</td>
+                    <td>History, log</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-info-circle fa-lg"></i></td>
+                    <td>fa-info-circle</td>
+                    <td>Information</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-support fa-lg"></i></td>
+                    <td>fa-support</td>
+                    <td>Help, support, cases</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-line-chart fa-lg"></i></td>
+                    <td>fa-line-chart</td>
+                    <td>Graph or optimize (undecided)</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-map-marker fa-lg"></i></td>
+                    <td>fa-map-marker</td>
+                    <td>Map, location</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-pause fa-lg"></i></td>
+                    <td>fa-pause</td>
+                    <td>Pause, stop, suspend</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-play fa-lg"></i></td>
+                    <td>fa-play</td>
+                    <td>Start, resume</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-minus-circle fa-lg"></i></td>
+                    <td>fa-minus-circle</td>
+                    <td>Communication error, impediment</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-minus fa-lg"></i></td>
+                    <td>fa-minus</td>
+                    <td>Incomplete, not done</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-plus fa-lg"></i></td>
+                    <td>fa-plus</td>
+                    <td>New, add, create</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-repeat fa-lg"></i></td>
+                    <td>fa-repeat</td>
+                    <td>Refresh, reload</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-search fa-lg"></i></td>
+                    <td>fa-search</td>
+                    <td>Find, search, filter</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-signal fa-lg"></i></td>
+                    <td>fa-signal</td>
+                    <td>Communication state, signal strength</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-sliders fa-lg"></i></td>
+                    <td>fa-sliders</td>
+                    <td>Modify, many changes at once, adjust</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-sort fa-lg"></i></td>
+                    <td>fa-sort</td>
+                    <td>Sorting, sortable (stacks with sort up and sort down)</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-sort-up fa-lg"></i></td>
+                    <td>fa-sort-up</td>
+                    <td>Ascending sort (stack/combine with fa-sort)</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-sort-down fa-lg"></i></td>
+                    <td>fa-sort-down</td>
+                    <td>Descending sort (stack/combine with fa-sort)</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-star fa-lg"></i></td>
+                    <td>fa-star</td>
+                    <td>Favorite</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-star-o fa-lg"></i></td>
+                    <td>fa-star-o</td>
+                    <td>Favoritable</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-tag fa-lg"></i></td>
+                    <td>fa-tag</td>
+                    <td>Tags, taggable</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-terminal fa-lg"></i></td>
+                    <td>fa-terminal</td>
+                    <td>Open terminal, communicate via terminal</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-user fa-lg"></i></td>
+                    <td>fa-user</td>
+                    <td>Person, user</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-users fa-lg"></i></td>
+                    <td>fa-users</td>
+                    <td>Group, people</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-user-plus fa-lg"></i></td>
+                    <td>fa-user-plus</td>
+                    <td>Add person, include person</td>
+                  </tr>
+                  <tr>
+                    <td class="minimal"><i class="fa fa-user-times fa-lg"></i></td>
+                    <td>fa-user-times</td>
+                    <td>Remove person, exclude person</td>
+                  </tr>
+                  <tr class="odd">
+                    <td class="minimal"><i class="fa fa-paperclip fa-lg"></i></td>
+                    <td>fa-paperclip</td>
+                    <td>File attachment</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <link type="text/css" href="bootstrap.min.css?body=1" rel="stylesheet" media="screen">
+    <link type="text/css" href="css/font-awesome.min.css?body=1" rel="stylesheet" media="screen">
+    <link type="text/css" href="style.css?body=1" rel="stylesheet" media="screen">
+    <script src="quo.js?body=1"></script>
+    <script src="script.js?body=1"></script>
+  </body>
+</html>

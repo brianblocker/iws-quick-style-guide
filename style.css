@@ -14,6 +14,42 @@ a {
     color: rgb(59,115,185);
   }
 
+b.sub {
+  font-weight: normal;
+  font-size: 0.75em;
+  color: #b3b3b3;
+}
+
+.well-grid .content {
+  position: relative;
+}
+
+  .well-grid .comm-status {
+    float: right;
+  }
+
+dl.list {
+  line-height: 20px;
+}
+
+dl.list:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+dl.list dd {
+  margin-left: 100px;
+}
+
+
+dl.list dt {
+  width: 90px;
+  float: left;
+  clear: left;
+  position: relative;
+}
+
 .row {
   margin: 0 -5px;
 }

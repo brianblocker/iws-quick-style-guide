@@ -28,6 +28,24 @@ b.sub {
     float: right;
   }
 
+ul.columnar-data {
+  margin: 0 -5px;
+  padding: 0;
+  display: block;
+  list-style: none;
+}
+
+  .columnar-data:after {
+    content: '';
+    display: table;
+  }
+
+  .columnar-data .column {
+    width: 50%;
+    padding: 0 5px 10px;
+    float: left;
+  }
+
 dl.list {
   line-height: 20px;
 }
@@ -336,6 +354,7 @@ table.full {
   }
 
   table.full tbody .odd td + td,
+  table.full tbody .active td + td,
   table.full thead th + th {
     border-left: 1px solid rgba(255,255,255,0.25);
   }
@@ -398,8 +417,12 @@ tr.active > td.minimal {
 
 th,
 td {
-  line-height: 30px;
-  padding: 5px 10px;
+  padding: 10px;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none;
+  user-select: none;
 }
 
 td.minimal,
@@ -423,3 +446,115 @@ th.minimal {
   th .sorter .fa-sort-up {
     color: #f2f2f2;
   }
+
+.quick-look {
+  position: relative;
+  margin: 0 -10px 10px;
+}
+
+  .quick-look:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+
+  .quick-look .content {
+    padding: 0 30px;
+    min-height: 120px;
+    float: left;
+    width: 100%;
+  }
+
+  .quick-look .control {
+    margin: 0;
+    position: absolute;
+    padding: 0 5px;
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+  }
+
+  .quick-look .control:first-child {
+    left: 0;
+  }
+
+  .quick-look .control:last-child {
+    right: 0;
+  }
+
+  .quick-look .control .button {
+    padding: 0;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .quick-look .control .button i {
+    position: relative;
+    top: 45%;
+    margin-top: -1em;
+  }
+
+  .quick-look .box {
+    margin-bottom: 0;
+    min-height: 200px;
+  }
+
+.triclopse {
+  overflow: hidden;
+}
+
+  .triclopse .inner {
+    width: 300%;
+    margin-left: -100%;
+  }
+
+  .triclopse [class^="col-"] {
+    padding: 0 5px;
+    float: left;
+    font-size: 2em;
+  }
+
+  .col-1 {
+    width: 11.11111111%;
+  }
+
+  .col-2 {
+    width: 22.222222222%;
+  }
+
+  .col-3 {
+    width: 33.33333333%;
+  }
+
+  .offset-1 {
+    margin-left: 11.11111111%;
+  }
+
+  .offset-2 {
+    margin-left: 22.22222222%;
+  }
+
+  .offset-3 {
+    margin-left: 33.33333333%;
+  }
+
+@-webkit-keyframes first {
+  from {color: rgba(255,0,0,1);}
+  to {color: rgba(255,0,0,0);}
+}
+
+@-webkit-keyframes second {
+  from {color: rgba(255,0,0,0);}
+  to {color: rgba(255,0,0,1);}
+}
+
+.siren-1 {
+  -webkit-animation: first 0.5s linear infinite alternate;
+}
+
+.siren-2 {
+  -webkit-animation: second 0.5s linear infinite alternate;
+}

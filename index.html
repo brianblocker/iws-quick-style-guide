@@ -105,7 +105,9 @@
               <header>
                 <h3>Box with header inside an area</h3>
               </header>
-              <p>Nothing to see here.</p>
+              <p>Nothing to see here.
+                <i class="fa fa-warning siren-1"></i>
+              </p>
               <footer>
 
                 <ul class="tabs pull-right">
@@ -811,20 +813,33 @@
             </header>
             <div class="content">
 
-              <div class="comm-status">
-                <i class="fa fa-signal fa-lg"></i>
-              </div>
+              <div class="row">
+                <div class="col-sm-1 pull-right">
+                  <i class="fa fa-signal fa-lg pull-right"></i>
+                </div>
+                <div class="col-sm-11">
 
-              <dl class="list">
-                <dt>State:</dt>
-                <dd>547.23</dd>
-                <dt>Run Hours:</dt>
-                <dd>0.00</dd>
-                <dt>Downhole Amps:</dt>
-                <dd>0.00</dd>
-                <dt>Downhole Volts:</dt>
-                <dd>302.00</dd>
-              </dl>
+                  <ul class="list">
+                    <li>
+                      <label>State:</label>
+                      <span class="value">547.23</span>
+                    </li>
+                    <li>
+                      <div class="column">Run Hours:</div>
+                      <div class="column">0.00</div>
+                    </li>
+                    <li>
+                      <div class="column">Downhole Amps:</div>
+                      <div class="column">0.00</div>
+                    </li>
+                    <li>
+                      <div class="column">Downhole Volts:</div>
+                      <div class="column">302.00</div>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
             </div>
           </section>
         </div>

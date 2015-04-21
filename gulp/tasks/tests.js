@@ -11,21 +11,19 @@ gulp.task('tests', ['clean:tests', 'tests:vendor', 'tests:app'], function (done)
   }, done);
 });
 
-function vendor (done) {
+function vendor () {
   var bundler = generators.vendor('chai', 'sinon');
 
   bundleLogger.start('vendor_test');
 
-  generators.bundle(bundler, 'vendor_test.js', {
+  return generators.bundle(bundler, 'vendor_test.js', {
     dest: config.browserify.testConfig.dest
   });
-
-  done();
 };
 
 gulp.task('tests:vendor', vendor);
 
-function app (done) {
+function app () {
   var bundler;
   var output      = config.browserify.testConfig.outputName;
   var test_files  = glob.sync(config.tests.src);
@@ -42,11 +40,9 @@ function app (done) {
 
   bundleLogger.start('test');
 
-  generators.bundle(bundler, output, {
+  return generators.bundle(bundler, output, {
     dest: config.browserify.testConfig.dest
   });
-
-  done();
 }
 
 gulp.task('tests:app', app);

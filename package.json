@@ -44,6 +44,7 @@
     "karma-sinon-chai": "^0.3.0",
     "karma-spec-reporter": "0.0.18",
     "karma-teamcity-reporter": "^0.1.2",
+    "merge-stream": "^0.1.7",
     "mocha": "^2.2.4",
     "reactify": "^1.0.0",
     "require-dir": "^0.1.0",

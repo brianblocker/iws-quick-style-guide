@@ -2,13 +2,14 @@ var gulp            = require('gulp');
 var config          = require('../gulp_config');
 var bundleLogger    = require('../util/bundle_logger');
 var generators      = require('../util/bundle_generators');
+var merge           = require('merge-stream');
 
 function vendor () {
   var bundler = generators.vendor();
 
   bundleLogger.start('vendor');
 
-  generators.bundle(bundler, config.browserify.vendor.outputName, {
+  return generators.bundle(bundler, config.browserify.vendor.outputName, {
     uglify: false,
     dest:   config.browserify.bundleConfig.dest,
     log_files: true
@@ -18,6 +19,8 @@ function vendor () {
 gulp.task('vendor', vendor);
 
 function app () {
+  var streams = [];
+
   config.browserify.bundleConfig.entries.forEach(function (entry) {
     var src     = config.src + '/' + entry + '.js';
     var output  = entry + config.browserify.bundleConfig.outputName;
@@ -33,11 +36,14 @@ function app () {
     });
 
     bundleLogger.start(entry);
-    generators.bundle(bundler, output, {
+
+    streams.push(generators.bundle(bundler, output, {
       dest: config.browserify.bundleConfig.dest,
       log_files: true
-    });
+    }));
   });
+
+  return merge.apply(null, streams);
 }
 
 gulp.task('app', app);

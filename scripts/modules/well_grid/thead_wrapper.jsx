@@ -31,8 +31,9 @@ Thead = React.createClass({
 
     while (current) {
       data              = {};
-      data.handleClick = current.get('sortable') ? this._sortHandler.bind(this, current) : null;
+      data.handleClick  = current.get('sortable') ? this._sortHandler.bind(this, current) : null;
       data.store        = current;
+      data.className    = current.get('type') === 'actions' ? 'actions-col' : '';
 
       columns.push(<Th {...data} key={current.cid} />);
       current = current.next;

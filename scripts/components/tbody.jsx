@@ -4,14 +4,44 @@
 
 var Tbody;
 var key_map;
-var $           = require('jquery')
+var $           = require('jquery');
 var React       = require('react');
 var Backbone    = require('backbone');
+var Scroller    = require('../utils/scroller_coaster');
+var Button      = require('./button.jsx');
 var Tr          = require('./tr.jsx');
 var Td          = require('./td.jsx');
 var Icon        = require('./icon.jsx');
 var RowDetails  = require('../modules/well_grid/active_row_details.jsx');
 var moment      = require('moment');
+
+/**
+ * Each transformer should well and attr_name params
+ */
+var transformers = {
+  string:   function (well, name) {
+              return well.get(name);
+            },
+  date:     function (well, name) {
+              return moment(well.get(name)).format('MMM D, YYYY h:mm:ssa');
+            },
+  status:   function (well, name) {
+              return (<Icon type="check" />);
+            },
+  actions:  function (well, name) {
+              return (
+                <div className="button-group button-drop">
+                  <Button>
+                    <Icon type="caret-down" />
+                  </Button>
+                  <Button>
+                    <Icon type="plus" />
+                    Create Case
+                  </Button>
+                </div>
+              );
+            }
+};
 
 key_map = {
   38: 'prev',
@@ -29,30 +59,19 @@ Tbody = React.createClass({
     };
   },
   componentDidUpdate: function () {
-    var $beneath;
-    var $active;
-    var mid;
-    var top;
-    var position;
-    var height;
-    var window_height;
-    var previous  = this.state.previous;
-    var active    = this.state.activeWell;
+    var elements;
+    var active = this.state.activeWell;
 
     if (! active) {
       return false;
     }
 
-    $active   = $(this.refs[active].getDOMNode());
-    $beneath  = $(this.refs.activeWell.getDOMNode());
+    elements = [
+      this.refs[active].getDOMNode(),
+      this.refs.activeWell.getDOMNode()
+    ];
 
-    window_height = $(window).height();
-    mid           = window_height / 2;
-    top           = $active.offset().top;
-    height        = $active.outerHeight() + $beneath.outerHeight();
-    position      = height > window_height ? top : top - mid + height - (height / 2);
-
-    window.scrollTo(0, position);
+    Scroller(elements, {steps: 250});
   },
   componentDidMount: function () {
     $(document).on('keydown.' + this.props.store.cid, function (e) {
@@ -140,15 +159,8 @@ Tbody = React.createClass({
 
     while (heading) {
       name = heading.get('name');
-      value = well.get(name);
-
-      if (value instanceof Date) {
-        value = moment(value).format('MMM D, YYYY h:mm:ssa');
-      }
-
-      if (value === 'ok') {
-        value = (<Icon type="check" />);
-      }
+      type = heading.get('type');
+      value = transformers[type] && transformers[type].call(this, well, name);
 
       fields.push(
         <Td store={well} column={heading} key={heading.cid}>

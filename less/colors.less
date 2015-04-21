@@ -1,0 +1,60 @@
+@dark:   #000;
+@light:  #f2f2f2;
+
+@dark-text:   @dark;
+@light-text:  @light;
+@muted-text:  fade(@dark, 25%);
+
+@actionable:    #4d4d4d;
+@active:        rgb(0,92,185);
+@danger:        #f00;
+@unactionable:  #808080;
+
+@subtle-actionable: fade(@actionable, 50%);
+@subtle-active:     fade(@active, 25%);
+@subtle-light:      fade(@light, 25%);
+@subtle-dark:       fade(@dark, 25%);
+
+@actionable-text:   contrast(@actionable, @dark-text, @light-text);
+@active-text:       contrast(@active, @dark-text, @light-text);
+@danger-text:       contrast(@danger, @dark-text, @light-text);
+@unactionable-text: contrast(@unactionable, @dark-text, @light-text);
+
+@separator-color-dark:  fade(@dark-text, 50%);
+@separator-color-light: fade(@light-text, 50%);
+
+@shadow-color:        @subtle-dark;
+@border-color:        #ccc;
+
+/**
+ * Background colors
+ */
+@area-background:       #ccc;
+@body-background:       #999;
+@box-background:        #e6e6e6;
+@box-header-background: #e6e6e6;
+@table-background:      #f2f2f2;
+
+/**
+ * Text colors derived from background + dark/light contrast
+ */
+@area-text:       contrast(@area-background, @dark-text, @light-text);
+@body-text:       contrast(@body-background, @dark-text, @light-text, 30%);
+@box-text:        contrast(@box-background, @dark-text, @light-text);
+@box-header-text: contrast(@box-header-background, @dark-text, @light-text);
+
+/**
+ * Priority colors
+ */
+@priority-lighten-percent: 27%;
+@p-1: #000;
+@p-2: lighten(@p-1, @priority-lighten-percent);
+@p-3: lighten(@p-2, @priority-lighten-percent);
+@p-4: lighten(@p-3, @priority-lighten-percent);
+@p-5: lighten(@p-4, @priority-lighten-percent);
+
+@p-1-text: contrast(@p-1, @dark-text, @light-text);
+@p-2-text: contrast(@p-2, @dark-text, @light-text);
+@p-3-text: contrast(@p-3, @dark-text, @light-text);
+@p-4-text: contrast(@p-4, @dark-text, @light-text);
+@p-5-text: @dark-text;

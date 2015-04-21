@@ -1,0 +1,15 @@
+var Backbone = require('Backbone');
+
+describe('Mixin feature', function () {
+  it('adds a #mixins method to Model prototype', function () {
+    expect(Backbone.Model.prototype.mixins).to.be.defined;
+  });
+
+  it('adds a #mixins method to Collection prototype', function () {
+    expect(Backbone.Collection.prototype.mixins).to.be.defined;
+  });
+
+  it('adds a #mixins method to View prototype', function () {
+    expect(Backbone.View.prototype.mixins).to.be.defined;
+  });
+});

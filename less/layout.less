@@ -1,0 +1,100 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+body {
+  background-color: @body-background;
+  color:            @body-text;
+}
+
+a {
+  color:            @actionable;
+  cursor:           pointer;
+  text-decoration:  underline;
+
+  &:hover,
+  &:active {
+    color: @active;
+  }
+}
+
+.area {
+  background-color: @area-background;
+  color:            @area-text;
+  margin-bottom:    @standard-margin;
+  margin-top:       0;
+  padding:          @standard-padding @standard-padding 0;
+
+  .afterfix();
+
+  > header {
+    padding: (@standard-padding * 2) (@standard-padding * 2) @standard-padding;
+  }
+
+  > nav {
+    background-color: @actionable;
+    margin:           0 (-1 * @standard-margin) @standard-margin;
+  }
+}
+
+.box {
+  background-color: @box-background;
+  border:           none;
+  border-radius:    0;
+  color:            @box-text;
+  margin-bottom:    @standard-margin;
+  padding:          @standard-padding;
+
+  .afterfix();
+
+  > header {
+    background-color: @box-header-background;
+    color:            @box-header-text;
+  }
+
+  > footer {
+    border-top:   1px solid @separator-color-dark;
+    line-height:  @standard-height;
+    padding-top:  @standard-padding;
+  }
+}
+
+.container-fluid {
+  padding: 0 @standard-padding / 2;
+}
+
+header {
+  line-height:  @standard-height;
+  margin:       (-1 * @standard-margin) (-1 * @standard-margin) @standard-margin;
+  padding:      @standard-padding;
+
+  .afterfix();
+
+  &.small {
+    font-size:    @font-size;
+    line-height:  @medium-height;
+  }
+
+  .header-right {
+    float: right;
+  }
+
+  > .header-title {
+    float:        left;
+    line-height:  @standard-height;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-weight:  normal;
+    line-height:  1.25em;
+    margin:       0;
+  }
+
+  h3 {
+    font-size: @font-size-h3;
+  }
+}
+
+.row {
+  margin: 0 (-1 / 2 * @standard-margin);
+}

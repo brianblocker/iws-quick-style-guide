@@ -5,8 +5,9 @@ var src = setup.src;
 var dest = setup.dest;
 
 var config = {
-  build: build,
-  dest: dest,
+  src:    src,
+  build:  build,
+  dest:   dest,
   clean: {
     src: dest
   },
@@ -14,19 +15,37 @@ var config = {
     src: './node_modules/font-awesome/fonts/*',
     dest: dest + '/fonts'
   },
+  less: {
+    src:                './less/main.less',
+    dest:               dest + '/css',
+    build_dependencies: ['clean'],
+    task_dependencies:  []
+  },
   browserify: {
-    debug: true,
+    debug:      true,
     extensions: ['.jsx'],
     bundleConfig: {
-      entries: src + '/app.js',
-      dest: dest + '/js',
-      outputName: 'app.js',
-      exts: ['.js', '.jsx'],
-      transform: ['browserify-shim']
+      entries:    ['app', 'cases'],
+      dest:       dest + '/js',
+      outputName: '_bundle.js',
+      exts:       ['.js', '.jsx'],
+      transform:  ['browserify-shim'],
+      utils:      '../../utils/*.js'
+    },
+    testConfig: {
+      dest:       dest + '/test',
+      outputName: 'test_bundle.js',
+      exts:       ['.js.test', '.jsx.test'],
+      transform:  ['browserify-shim']
     },
     vendor: {
       outputName: 'vendor.js'
     }
+  },
+  tests: {
+    src:  src + '/**/*.test',
+    dest: dest + '/js/test',
+    karma: path.normalize(__dirname + '/../karma.conf.js')
   }
 };
 

@@ -1,0 +1,60 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+.fv-autocomplete {
+  position:   relative;
+
+  .options {
+    position:   absolute;
+    top:        100%;
+    left:       -1 * @standard-padding;
+    margin:     0;
+    padding:    0;
+    z-index:    1000;
+
+    &::before {
+      background-color: @shadow-color;
+      box-sizing:       content-box;
+      content:          '';
+      display:          block;
+      height:           100%;
+      left:             -1 * @shadow-size;
+      padding:          0 @shadow-size;
+      position:         absolute;
+      top:              @shadow-size;
+      width:            100%;
+      z-index:          -2;
+    }
+
+    > ul {
+      list-style: none;
+      max-height: 200px;
+      overflow:   auto;
+      min-width:  150px;
+      margin:     0;
+      padding:    0;
+    }
+  }
+
+  .option {
+    padding:      @small-padding @standard-padding;
+    background:   @light;
+    line-height:  @medium-height;
+
+    &.selectable {
+      color:  @actionable;
+      cursor: pointer;
+    }
+
+    &.selectable.active-true,
+    &.selectable:hover {
+      color:      @active-text;
+      background: @active;
+    }
+
+    &.unselectable {
+      font-style: italic;
+    }
+  }
+}

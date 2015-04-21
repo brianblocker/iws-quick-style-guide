@@ -1,0 +1,78 @@
+/**
+ * @jsx React.DOM
+ */
+
+var React     = require('react');
+var TestUtils = React.addons.TestUtils;
+var Sinon     = require('sinon');
+var expect    = require('chai').expect;
+var AndOr     = require('./and_or_selector.jsx');
+var Dropdown  = require('./dropdown.jsx');
+
+describe('AndOrSelector component', function () {
+  afterEach(function (done) {
+    React.unmountComponentAtNode(document.body);
+
+    setTimeout(done);
+  });
+
+  it('is defined', function () {
+    expect(AndOr).to.be.defined;
+  });
+
+  describe('basic functionality', function () {
+    beforeEach(function (done) {
+      this.spy    = sinon.spy();
+      this.and_or = TestUtils.renderIntoDocument(<AndOr onChange={this.spy} />);
+      this.node   = React.findDOMNode(this.and_or);
+
+      setTimeout(done);
+    });
+
+    it('is not in editing state by default', function () {
+      expect(this.and_or.state.editing).to.equal(false);
+    });
+
+    it('sets state to editing:true when clicked', function () {
+      TestUtils.Simulate.click(this.node);
+
+      expect(this.and_or.state.editing).to.equal(true);
+    });
+
+    it('sets state to editing:false when the mouse leaves', function () {
+      TestUtils.Simulate.click(this.node);
+      TestUtils.SimulateNative.mouseOut(this.node);
+
+      expect(this.and_or.state.editing).to.equal(false);
+    });
+
+    it('calls onChange callback on selection', function () {
+      this.and_or._handleSelection(AndOr.AND);
+
+      expect(this.spy.called).to.equal(true);
+    });
+
+    it('turns off editing mode when selection is made', function () {
+      this.and_or.setState({editing: true});
+      this.and_or._handleSelection(AndOr.AND);
+
+      expect(this.and_or.state.editing).to.equal(false);
+    });
+
+    it('does not render a dropdown when not in editing mode', function () {
+      var dropdown = this.and_or.refs.dropdown;
+
+      expect(dropdown).to.be.undefined;
+    });
+
+    it('renders a dropdown when in editing mode', function () {
+      var dropdown;
+
+      this.and_or.setState({editing: true});
+
+      dropdown = this.and_or.refs.dropdown;
+
+      expect(TestUtils.isCompositeComponentWithType(dropdown, Dropdown)).to.equal(true);
+    });
+  });
+});

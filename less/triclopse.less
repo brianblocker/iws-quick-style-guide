@@ -1,0 +1,43 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+
+@one-col: 11.11111111%;
+
+.triclopse {
+  overflow: hidden;
+
+  .inner {
+    margin-left: -100%;
+    width: 300%;
+  }
+
+  [class^="col-"] {
+    padding:    0 @standard-padding / 2;
+    float:      left;
+    font-size:  2em;
+  }
+
+  .col-1 {
+    width: @one-col;
+  }
+
+  .col-2 {
+    width: @one-col * 2;
+  }
+
+  .col-3 {
+    width: @one-col * 3;
+  }
+
+  .offset-1 {
+    margin-left: @one-col;
+  }
+
+  .offset-2 {
+    margin-left: @one-col * 2;
+  }
+
+  .offset-3 {
+    margin-left: @one-col * 3;
+  }
+}

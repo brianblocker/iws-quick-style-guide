@@ -1,0 +1,83 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "vendor_mixins";
+
+.feaux-button,
+.button {
+  .user-select(none);
+
+  white-space:      nowrap;
+  cursor:           pointer;
+  display:          inline-block;
+  line-height:      @standard-height;
+  padding:          0 @standard-padding;
+
+  &:hover,
+  &:active {
+    text-decoration:  none;
+  }
+
+  &.small {
+    line-height: @medium-height;
+    padding: 0 @standard-padding / 2;
+  }
+
+  i + span,
+  span + i {
+    margin-left: @standard-margin;
+  }
+}
+
+.button {
+  background-color: @actionable;
+  color:            @actionable-text;
+  text-decoration:  none;
+
+  &.light:hover,
+  &.light:active,
+  &:hover,
+  &:active {
+    background-color: @active;
+    color:            @active-text;
+  }
+
+  &.light {
+    background-color: @light;
+    color:            @actionable;
+  }
+}
+
+.feaux-button {
+  background-color: transparent;
+  color:            @actionable;
+
+  &:hover,
+  &:active {
+    color: @active;
+    background-color: transparent;
+  }
+}
+
+.button-group {
+  .button + .button {
+    margin-left: 1px;
+  }
+
+  &.button-drop {
+    white-space: nowrap;
+
+    .button:first-child {
+      float:        right;
+      margin-left:  0;
+      text-align:   center;
+      width:        @standard-height;
+    }
+
+    .button:last-child {
+      display:      block;
+      margin-left:  0;
+      margin-right: @standard-height + 1;
+      overflow:     hidden;
+    }
+  }
+}

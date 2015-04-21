@@ -3,13 +3,15 @@
  */
 
 var Tabs;
-var React = require('react');
-var Icon  = require('./icon.jsx');
+var React   = require('react');
+var Button  = require('./button.jsx');
 
 Tabs = React.createClass({
   propTypes: {
-    action: React.PropTypes.func
+    action: React.PropTypes.func,
+    tabs:   React.PropTypes.array
   },
+  mixins: [React.addons.PureRenderMixin],
   render: function () {
     return (
       <ul className="tabs">
@@ -19,14 +21,9 @@ Tabs = React.createClass({
   },
   _buildTabs: function () {
     return this.props.tabs.map(function (tab, index) {
-      var icon = tab.icon ? <Icon type={tab.icon} /> : null;
-
       return (
         <li key={index}>
-          <a href={tab.href} className="button small" onClick={tab.action}>
-            {icon}
-            {tab.text}
-          </a>
+          <Button onClick={tab.action} icon={tab.icon} text={tab.text} />
         </li>
       );
     }, this);

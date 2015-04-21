@@ -40,20 +40,7 @@ ActiveRowDetails = React.createClass({
     var class_names = ['active'];
     var well        = this.props.store;
     var size_toggle = this.props.minimized ? 'expand' : 'compress';
-    var tabs        = [
-      {icon: 'arrow-up',    action: this._selectPrev},
-      {icon: 'arrow-down',  action: this._selectNext},
-      {icon: size_toggle,   action: this._sizeToggle},
-      {icon: 'close',       action: this._close}
-    ];
-
-    if (! this.props.prev) {
-      delete tabs[0];
-    }
-
-    if (! this.props.next) {
-      delete tabs[1];
-    }
+    var tabs        = this._getTabs();
 
     if (! this.props.minimized) {
       quick_items = this.state.quick.map(function (item, index) {
@@ -64,7 +51,7 @@ ActiveRowDetails = React.createClass({
         }
 
         return (
-          <div className={className}>
+          <div className={className} key={index}>
             <div className="box">
               {item.text}
             </div>
@@ -110,6 +97,24 @@ ActiveRowDetails = React.createClass({
         </Td>
       </Tr>
     );
+  },
+  _getTabs: function () {
+    var tabs = [
+      {icon: {type: 'arrow-up'},    action: this._selectPrev},
+      {icon: {type: 'arrow-down'},  action: this._selectNext},
+      {icon: {type: size_toggle},   action: this._sizeToggle},
+      {icon: {type: 'close'},       action: this._close}
+    ];
+
+    if (! this.props.prev) {
+      delete tabs[0];
+    }
+
+    if (! this.props.next) {
+      delete tabs[1];
+    }
+
+    return tabs;
   },
   _moveForward: function () {
     store.get('quick').goBack();

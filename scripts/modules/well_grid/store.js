@@ -11,8 +11,6 @@ var wells         = new Backbone.Collection();
 
 well_headings.registerWithDispatcher(dispatcher);
 
-
-
 store = new Backbone.Model({
   wells:    wells,
   first:    null,

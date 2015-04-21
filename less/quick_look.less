@@ -1,0 +1,54 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+.quick-look {
+  position: relative;
+  margin: 0 (-1 * @standard-margin) @standard-margin;
+
+  .afterfix();
+
+  .content {
+    float:      left;
+    min-height: @standard-height * 4;
+    padding:    0 @standard-height;
+    width:      100%;
+  }
+
+  .control {
+    display:    inline-block;
+    height:     100%;
+    margin:     0;
+    padding:    0 @standard-padding / 2;
+    position:   absolute;
+    text-align: center;
+
+    &:first-child {
+      left: 0;
+    }
+
+    &:last-child {
+      right: 0;
+    }
+
+    .button {
+      display:      inline-block;
+      height:       100%;
+      line-height:  @medium-height;
+      padding:      0;
+      text-align:   center;
+      width:        @medium-height;
+    }
+
+    .button i {
+      margin-top: -1em;
+      position:   relative;
+      top:        45%;
+    }
+  }
+
+  .box {
+    margin-bottom:  0;
+    min-height:     200px;
+  }
+}

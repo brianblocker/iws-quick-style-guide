@@ -1,0 +1,31 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+.tabs {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+
+  .afterfix();
+
+  > li {
+    float: left;
+
+    & + li {
+      margin-left: 1px;
+    }
+  }
+}
+
+.tab-group {
+  .afterfix();
+
+  .tabs {
+    float: left;
+
+    & + .tabs {
+      margin-left: @standard-margin;
+    }
+  }
+}

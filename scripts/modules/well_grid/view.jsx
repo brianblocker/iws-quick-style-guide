@@ -16,7 +16,7 @@ var sizes = {
 WellList = React.createClass({
   render: function () {
     return (
-      <table className="full">
+      <table className="full inline-details">
         <caption><div onClick={this._changeWidthHandler}>toggle 2nd col width width example</div></caption>
         <Thead store={this.props.store} />
         <Tbody store={this.props.store} />
@@ -28,7 +28,6 @@ WellList = React.createClass({
     var third = store.at(2);
 
     third.set('width', sizes[third.get('width')] || 200);
-    //console.log(headings);
   }
 });
 

@@ -9,3 +9,7 @@ gulp.task('clean', function () {
 gulp.task('clean:build', function () {
   return clean([config.build]);
 });
+
+gulp.task('clean:tests', function () {
+  return clean(['./build/test']);
+});

@@ -1,0 +1,29 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+.action {
+  color: @actionable;
+
+  &:active,
+  &:hover {
+    color: @active;
+  }
+}
+
+.actions {
+  margin:   0;
+  padding:  0;
+
+  .afterfix();
+
+  > li {
+    display:  block;
+    float:    left;
+    position: relative;
+
+    & + li {
+      margin-left: @standard-margin;
+    }
+  }
+}

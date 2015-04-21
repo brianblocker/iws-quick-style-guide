@@ -6,6 +6,7 @@ var Tr;
 var React = require('react');
 
 Tr = React.createClass({
+  mixins: [React.addons.PureRenderMixin],
   render: function () {
     return (
       <tr {...this.props}>

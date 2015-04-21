@@ -1,0 +1,123 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "vendor_mixins";
+
+.table-wrapper {
+  margin: (-1 * @standard-margin) (-1 * @standard-margin) 0;
+}
+
+table.full {
+  background-color: @table-background;
+  border-collapse:  initial;
+  margin-bottom:    @standard-margin;
+  width:            100%;
+
+  tbody td + td {
+    border-left: 1px solid @box-background;
+  }
+
+  tbody .odd td + td,
+  thead th + th {
+    border-left: 1px solid @box-background;
+  }
+
+  tbody .active td + td {
+    border-left: 1px solid @separator-color-light;
+  }
+
+  tbody tr.odd {
+    background-color: @box-header-background;
+  }
+
+  th {
+    background-color: @unactionable;
+    color:            @unactionable-text;
+    font-weight:      normal;
+
+    &.sortable {
+      background-color: @actionable;
+      color:            @actionable-text;
+      cursor:           pointer;
+      padding-right:    @standard-height - 2;
+      position:         relative;
+    }
+
+    &.actions-col {
+      white-space:  nowrap;
+      width:        1%;
+    }
+
+    .sorter {
+      color:      @unactionable;
+      float:      right;
+      margin-top: -1 * @font-size;
+      position:   absolute;
+      right:      0;
+      top:        50%;
+    }
+
+    &.minimal .sorter {
+      margin:   auto;
+      position: relative;;
+      right:    inherit;
+      top:      inherit;
+    }
+
+    .sorter .fa-sort-down,
+    .sorter .fa-sort-up {
+      color: @actionable-text;
+    }
+  }
+
+  th,
+  td {
+    .user-select(none);
+
+    padding: @standard-padding;
+
+    &.minimal {
+      padding:      @small-padding;
+      text-align:   center;
+      white-space:  nowrap;
+      width:        1%;
+    }
+  }
+}
+
+th.datefield,
+td.datefield {
+  width: 1%;
+  white-space: nowrap;
+}
+
+table.inline-details {
+  tbody tr.active {
+    background-color: @subtle-active;
+
+    > td.minimal {
+      padding-left: 0;
+    }
+  }
+
+  tr.active > td:first-child {
+    border-left:  @small-padding solid @active;
+    padding-left: @small-padding;
+  }
+
+  fieldset.separator {
+    border-top: 1px solid @separator-color-light;
+    margin-bottom: @small-margin;
+    padding: 0;
+
+    legend {
+      border: none;
+      position: relative;
+      padding: 0;
+      text-align: center;
+      width: auto;
+      font-size: @font-size;
+      line-height: @medium-height;
+      margin: 0;
+    }
+  }
+}

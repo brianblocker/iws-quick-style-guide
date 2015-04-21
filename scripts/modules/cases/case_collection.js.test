@@ -1,0 +1,38 @@
+var Backbone        = require('backbone');
+var CaseCollection  = require('./case_collection');
+var CaseModel       = require('./case_model');
+var expect          = require('chai').expect;
+
+describe('Case Collection', function () {
+  before(function () {
+    this.collection = new CaseCollection();
+  });
+
+  it('should be a Collection instance', function () {
+    expect(this.collection).to.be.an.instanceof(Backbone.Collection);
+  });
+
+  describe('#linkSiblings', function () {
+    before(function () {
+      this.collection.add([{},{},{}]);
+      this.collection.linkSiblings();
+
+      this.first  = this.collection.at(0);
+      this.second = this.collection.at(1);
+      this.third  = this.collection.at(2);
+    });
+
+    it('correctly identifies prev/next', function () {
+      expect(this.second.prev.cid).to.equal(this.first.cid);
+      expect(this.second.next.cid).to.equal(this.third.cid);
+    });
+
+    it('correctly makes prev undefined for first element', function () {
+      expect(this.first.prev).to.be.undefined;
+    });
+
+    it('correctly makes next undefined for last element', function () {
+      expect(this.third.next).to.be.undefined;
+    });
+  });
+});

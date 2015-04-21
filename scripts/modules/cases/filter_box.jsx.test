@@ -1,0 +1,250 @@
+var React     = require('react');
+var $         = require('jquery');
+var TestUtils = React.addons.TestUtils;
+var FilterBox = require('./filter_box.jsx');
+var AndOr     = require('./and_or_selector.jsx');
+var criteria  = require('./filter_box_definition');
+
+describe('FilterBox', function () {
+  afterEach(function (done) {
+    React.unmountComponentAtNode(document.body);
+
+    setTimeout(done);
+  });
+
+  describe('default functionality', function () {
+    beforeEach(function (done) {
+      this.builder    = new criteria.Builder(criteria.definition);
+      this.filter_box = TestUtils.renderIntoDocument(<FilterBox criteria={this.builder} />);
+
+      setTimeout(done);
+    });
+
+    it('is an `all` filter by default', function () {
+      expect(this.filter_box.state.filterType).to.equal(AndOr.AND);
+    });
+
+    it('can have the filter type changed', function () {
+      this.filter_box.handleFilterTypeChange(AndOr.OR);
+
+      expect(this.filter_box.state.filterType).to.equal(AndOr.OR);
+    });
+
+    it('can have the filter type set to something else on initialization', function () {
+      var filter_box = TestUtils.renderIntoDocument(<FilterBox criteria={this.builder} filterType={AndOr.OR} />);
+
+      expect(filter_box.state.filterType).to.equal(AndOr.OR);
+    });
+
+    it('can have the filter type locked', function () {
+      var filter_box = TestUtils.renderIntoDocument(<FilterBox criteria={this.builder} lockType={true} />);
+
+      filter_box.handleFilterTypeChange(AndOr.OR);
+
+      expect(filter_box.state.filterType).to.equal(AndOr.AND);
+    });
+
+    it('is not in edit state by default', function () {
+      expect(this.filter_box.state.editing).to.equal(false);
+    });
+
+    it('can be put in edit state on initialization', function () {
+      var filter_box = TestUtils.renderIntoDocument(<FilterBox criteria={this.builder} editing={true} />);
+
+      expect(filter_box.state.editing).to.equal(true);
+    });
+
+    it('has an input for `autocomplete` interface when in edit state', function () {
+      this.filter_box.enableEditing();
+
+      expect(this.filter_box.refs.searchCriteria).to.not.be.undefined;
+    });
+
+    it('does not have an input for `autocomplete` interface by default', function () {
+      expect(this.filter_box.refs.searchCriteria).to.be.undefined;
+    });
+
+    it('turns on editing mode when clicking', function () {
+      var node = React.findDOMNode(this.filter_box);
+
+      TestUtils.Simulate.click(node);
+
+      expect(this.filter_box.state.editing).to.equal(true);
+    });
+
+    // we can't currently test focus effectively in unit tests :(
+    it('focuses the input when in edit mode');
+    // need to test clicking, not in unit tests though
+    it('ends editing when clicking out of the filter');
+  });
+
+  describe('criteria', function () {
+    beforeEach(function (done) {
+      this.builder = new criteria.Builder(criteria.definition);
+
+      setTimeout(done);
+    });
+
+    it('has correct list of available criteria types', function () {
+      expect(criteria.definition).to.include.keys(
+        'well', 'reporter', 'created', 'created_between', 'created_gt', 'created_lt',
+        'tags', 'priority', 'priority_gt', 'priority_lt', 'issue_type', 'issue_subtype'
+      );
+    });
+
+    describe('#set', function () {
+      it('throws if key is falsey', function () {
+        var fn = this.builder.set.bind(this.builder);
+
+        expect(fn).to.throw();
+      });
+
+      it('throws if prop is falsey', function () {
+        var fn = this.builder.set.bind(this.builder, 'well');
+
+        expect(fn).to.throw();
+      });
+
+      it('does not throw if value is value is falsey', function () {
+        var fn = this.builder.set.bind(this.builder, 'well', 'locked');
+
+        expect(fn).to.not.throw();
+      });
+
+      it('returns undefined if key is not a property of criteria', function () {
+        expect(this.builder.set('marmaduke', 'dog')).to.be.undefined;
+      });
+
+      it('returns true if key is a property of criteria', function () {
+        expect(this.builder.set('well', 'value', null)).to.be.true;
+      });
+
+      it('sets criteria[key][prop] equal to the value passed', function () {
+        this.builder.set('well', 'value', 23);
+
+        expect(this.builder.criteria.well.value).to.equal(23);
+
+        this.builder.set('well', 'value', null);
+      });
+    });
+
+    describe('#use', function () {
+      it('will mark criteria as used (used:true)', function () {
+        var criteria = this.builder.criteria;
+
+        this.builder.use('well');
+
+        expect(criteria.well.used).to.be.true;
+      });
+    });
+
+    describe('#refund', function () {
+      it('will mark criteria as unused (used:false)', function () {
+        var criteria = this.builder.criteria;
+
+        this.builder.use('well');
+        this.builder.refund('well');
+
+        expect(criteria.well.used).to.be.falsey;
+      });
+    });
+
+    describe('#isAvailable', function () {
+      it('is defined', function () {
+        expect(this.builder.isAvailable).to.not.be.undefined;
+      });
+
+      it('returns falsey if criteria is not specified', function () {
+        expect(this.builder.isAvailable('wolfgang')).to.be.falsey;
+      });
+
+      it('returns falsey if criteria is locked', function () {
+        this.builder.lock('well');
+
+        expect(this.builder.isAvailable('well')).to.be.falsey;
+
+        this.builder.unlock('well');
+      });
+
+      it('returns falsey if criteria is used', function () {
+        this.builder.use('well');
+
+        expect(this.builder.isAvailable('well')).to.be.falsey;
+
+        this.builder.refund('well');
+      });
+
+      it('returns falsey if criteria is used AND locked', function () {
+        this.builder.use('well');
+        this.builder.lock('well');
+
+        expect(this.builder.isAvailable('well')).to.be.falsey;
+
+        this.builder.refund('well');
+        this.builder.unlock('well');
+      });
+
+      it('returns true if criteria is unlocked and unused', function () {
+        expect(this.builder.isAvailable('well')).to.be.true;
+      });
+    });
+
+    describe('#matchCriteria', function () {
+      it('finds all options that match the search pattern', function () {
+        var vals = this.builder.matchCriteria('date');
+
+        expect(vals).to.include.keys(
+          'created', 'created_between', 'created_gt', 'created_lt'
+        );
+
+        vals = this.builder.matchCriteria('pri');
+
+        expect(vals).to.include.keys(
+          'priority', 'priority_lt', 'priority_gt'
+        );
+      });
+
+      it('does not return criteria which have already been used', function () {
+        var vals2;
+        var criteria  = this.builder.criteria;
+        var vals1     = this.builder.matchCriteria();
+
+        expect(vals1.well).to.not.be.undefined;
+
+        this.builder.use('well');
+
+        vals2 = this.builder.matchCriteria();
+
+        expect(vals2.well).to.be.undefined;
+
+        this.builder.refund('well');
+      });
+
+      it('calls #isAvailable', function () {
+        var stub = sinon.stub(this.builder, 'isAvailable').returns(true);
+
+        this.builder.matchCriteria();
+
+        expect(stub.called).to.be.true;
+
+        stub.restore();
+      });
+    });
+
+    describe('#toOptions', function () {
+      it('returns an array of option objects for autocomplete', function () {
+        var vals = this.builder.toOptions('date');
+
+        expect(vals.length).to.be.greaterThan(2);
+        expect(vals[0].value).to.not.be.undefined;
+        expect(vals[0].text).to.not.be.undefined;
+      });
+    });
+
+    it('can add new criteria');
+    it('can remove criteria');
+    it('can have criteria set by default');
+    it('can lock certian criteria');
+    it('can lock criteria types');
+  });
+});

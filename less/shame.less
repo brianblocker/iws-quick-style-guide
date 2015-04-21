@@ -1,0 +1,242 @@
+@import (reference) "colors";
+@import (reference) "sizes";
+@import (reference) "mixins";
+
+.nodata {
+  color:      @subtle-dark;
+  font-style: italic;
+}
+
+.muted {
+  color: @muted-text;
+}
+
+.priority {
+  display:      inline-block;
+  line-height:  @standard-height;
+  padding:      0 @standard-padding;
+
+  &-1 {
+    background-color: @p-1;
+    color:            @p-1-text;
+  }
+
+  &-2 {
+    background-color: @p-2;
+    color:            @p-2-text;
+  }
+
+  &-3 {
+    background-color: @p-3;
+    color:            @p-3-text;
+  }
+
+  &-4 {
+    background-color: @p-4;
+    color:            @p-4-text;
+  }
+
+  &-5 {
+    background-color: @p-5;
+    color:            @p-5-text;
+  }
+}
+
+.list-filter {
+  border-top:     1px solid @subtle-dark;
+  border-bottom:  1px solid @subtle-dark;
+  padding:        @standard-padding 0;
+}
+
+.filter-selection {
+  .afterfix();
+
+  line-height:    @standard-height;
+
+  > ul {
+    .afterfix();
+
+    list-style:     none;
+    margin-bottom:  @small-margin;
+
+    > li {
+      float: left;
+    }
+
+    > li + li {
+      margin-left: @standard-margin;
+    }
+  }
+}
+
+.icon-group a + a {
+  margin-left: @standard-margin;
+}
+
+.dropdown {
+  position: relative;
+
+  &.align-left > ul {
+    left: 0;
+  }
+
+  &.align-right > ul {
+    right: 0;
+  }
+
+  /**
+   * Colors
+   */
+  > ul {
+    background-color: @actionable;
+    color:            @actionable-text;
+
+    &:after {
+      background-color: @actionable;
+    }
+
+    li {
+      background-color: @actionable;
+    }
+  }
+
+  &.light > ul {
+    background-color: @light;
+    color:            @dark;
+
+    &:after {
+      background-color: @light;
+    }
+
+    li {
+      background-color: @light;
+    }
+  }
+
+  /**
+   * Layout
+   */
+  > ul {
+    list-style:       none;
+    margin:           0;
+    padding:          @small-padding 0;
+    position:         absolute;
+    top:              100%;
+    z-index:          1000;
+
+    &:before {
+      background-color: @shadow-color;
+      box-sizing:       content-box;
+      content:          '';
+      display:          block;
+      height:           100%;
+      left:             -1 * @shadow-size;
+      padding:          0 @shadow-size;
+      position:         absolute;
+      top:              @shadow-size;
+      width:            100%;
+      z-index:          -2;
+    }
+
+    &:after {
+      content:          '';
+      display:          block;
+      height:           100%;
+      left:             0;
+      position:         absolute;
+      top:              0;
+      width:            100%;
+      z-index:          -1;
+    }
+
+    li {
+      margin:           0;
+      min-width:        @standard-height * 2;
+    }
+
+    a {
+      display: block;
+    }
+
+    .separator {
+      border-top: 1px solid @separator-color-light;
+      margin:     @small-margin @standard-margin;
+      padding:    0;
+    }
+  }
+}
+
+.filter-box {
+  background-color: @light;
+  border:           1px solid @border-color;
+  line-height:      @standard-height;
+  padding:          0 @standard-padding;
+
+  .afterfix();
+
+  .inputable {
+    background-color: transparent;
+    border:           0;
+    line-height:      @standard-height;
+    padding:          0;
+    outline:          none;
+  }
+
+  .chain,
+  .chain-group {
+    display:  block;
+    float:    left;
+  }
+
+  .chain + .chain {
+    margin-left: @small-margin;
+  }
+
+  .chain + .chain-group,
+  .chain-group + .chain,
+  .chain-group + .chain-group {
+    margin-left: @standard-margin;
+  }
+
+  .search-action {
+    margin-right: -1 * @standard-padding;
+  }
+}
+
+.and-or {
+  cursor:   pointer;
+  position: relative;
+
+  .dropped {
+    background-color: @light;
+    left:             0;
+    padding:          0 @standard-padding;
+    position:         absolute;
+    top:              100%;
+    line-height:      inherit;
+    border:           1px solid @border-color;
+    border-top:       none;
+    border-bottom:    none;
+  }
+
+  .dropped:last-child {
+    border-bottom:    1px solid @border-color;
+  }
+
+  .option {
+    display:      block;
+    padding-left: @standard-padding;
+  }
+}
+
+.drop-button {
+  text-decoration: none;
+
+  > i {
+    margin-left: @standard-margin;
+  }
+
+  &:hover {
+    text-decoration:  none;
+  }
+}

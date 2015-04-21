@@ -1,0 +1,205 @@
+var React         = require('react');
+var TestUtils     = React.addons.TestUtils;
+var Autocomplete  = require('./autocomplete.jsx');
+var sinon         = require('sinon');
+var criteria      = require('./filter_box_definition');
+
+xdescribe('Autocomplete', function () {
+  afterEach(function (done) {
+    React.unmountComponentAtNode(document.body);
+
+    setTimeout(done);
+  });
+
+  beforeEach(function (done) {
+    this.autocomplete = TestUtils.renderIntoDocument(<Autocomplete />);
+
+    setTimeout(done);
+  });
+
+  it('is defined', function () {
+    expect(Autocomplete).to.not.be.undefined;
+  });
+
+  it('is not in edit mode by default', function () {
+    expect(this.autocomplete.state.editing).to.be.false;
+  });
+
+  it('can be placed in edit mode on initialization', function () {
+    var autocomplete = TestUtils.renderIntoDocument(<Autocomplete editing={true} />);
+
+    expect(autocomplete.state.editing).to.be.true;
+  });
+
+  it('should not have options when not in edit mode', function () {
+    expect(this.autocomplete.refs.options).to.be.undefined;
+  });
+
+  it('has options when placed in edit mode', function () {
+    this.autocomplete.setState({editing: true});
+
+    expect(this.autocomplete.refs.options).not.to.be.undefined;
+  });
+
+  it('can be initialized with a default value', function () {
+    var autocomplete = TestUtils.renderIntoDocument(<Autocomplete value="hellor" />);
+
+    expect(autocomplete.state.textValue).to.equal('hellor');
+  });
+
+  it('can be initialized with default values in multi-select mode', function () {
+    var autocomplete = TestUtils.renderIntoDocument(<Autocomplete value={['hellor']} multi={true} />);
+
+    expect(autocomplete.state.value).to.be.an('array');
+  });
+
+  it('calls #buildOptions as the values change', function () {
+    var input;
+    var spy;
+
+    this.autocomplete.setState({editing: true});
+
+    input = React.findDOMNode(this.autocomplete.refs.input);
+    spy   = sinon.spy(this.autocomplete, 'buildOptions');
+
+    TestUtils.Simulate.change(input, {target: {value: 'Hello'}});
+    TestUtils.Simulate.change(input, {target: {value: 'Hello World'}});
+    TestUtils.Simulate.change(input, {target: {value: 'Hello World Again'}});
+
+    expect(spy.callCount).to.equal(3);
+    spy.restore();
+  });
+
+  it('has a default active value of null', function () {
+    expect(this.autocomplete.state.active).to.be.null;
+  });
+
+  it('sets active to 0 when a change is made', function () {
+    this.autocomplete.handleChange({target: {value: 'Hellor'}});
+
+    expect(this.autocomplete.state.active).to.equal(0);
+  });
+
+  it('sets active to 0 when active is null and down is pressed', function () {
+    this.autocomplete.moveDown();
+
+    expect(this.autocomplete.state.active).to.equal(0);
+  });
+
+  it('sets active to 0 when active is null and up is pressed', function () {
+    this.autocomplete.moveUp();
+
+    expect(this.autocomplete.state.active).to.equal(0);
+  });
+
+  it('increments active when down is pressed and active is a number', function () {
+    this.autocomplete.moveDown();
+    this.autocomplete.moveDown();
+    this.autocomplete.moveDown();
+
+    expect(this.autocomplete.state.active).to.equal(2);
+  });
+
+  it('updates the store with changes');
+
+  describe('.determineValue', function () {
+    it('returns value object in single-select mode', function () {
+      var val     = {hello: 'world'};
+      var results = Autocomplete.determineValue(val);
+
+      expect(results.hello).to.equal('world');
+    });
+
+    it('returns an array of value objects in multi-select mode', function () {
+      var vals    = ['one', 'two'];
+      var results = Autocomplete.determineValue(vals, true);
+
+      expect(results[1]).to.equal('two');
+    });
+
+    it('returns an array of value objects when passed a single value in multi-select mode', function () {
+      var val     = {hello: 'world'};
+      var results = Autocomplete.determineValue(val, true);
+
+      expect(results).to.be.an('array');
+      expect(results[0].hello).to.equal('world');
+    });
+
+    it('throws an error if passed an array of value objects in single-select mode', function () {
+      var val = ['should', 'throw'];
+
+      expect(Autocomplete.determineValue.bind(null, val)).to.throw();
+    });
+  });
+
+  describe('#handleChange', function () {
+    it('sets the state correctly for single-select', function () {
+      this.autocomplete.handleChange({target: {value: 'joe'}});
+
+      expect(this.autocomplete.state.textValue).to.equal('joe');
+    });
+
+    it('has no idea what to do for multi-select');
+  });
+
+  describe('#buildOptions', function () {
+    it('can create options from an array of option objects', function () {
+      var autocomplete;
+      var opts = [
+        {text: 'One Value', value: 'one'},
+        {text: 'Two Value', value: 'two'},
+        {text: 'Red Value', value: 'red'},
+        {text: 'Blue Value', value: 'blue'}
+      ];
+
+      autocomplete = TestUtils.renderIntoDocument(<Autocomplete options={opts} />);
+
+      autocomplete.setState({editing: true});
+
+      expect(TestUtils.scryRenderedDOMComponentsWithTag(autocomplete.refs.options, 'li').length).to.equal(4);
+    });
+
+    it('passes current value to generator callback when a generator is present', function () {
+      var spy           = sinon.spy();
+      var autocomplete  = TestUtils.renderIntoDocument(<Autocomplete generator={spy} />);
+
+      autocomplete.setState({textValue: 'HJ'});
+      autocomplete.buildOptions();
+
+      expect(spy.calledWith('HJ')).to.be.true;
+    })
+
+    it('can have options created by generator callback', function () {
+      var UL;
+      var builder       = new criteria.Builder(criteria.definition);
+      var autocomplete  = TestUtils.renderIntoDocument(<Autocomplete generator={builder.toOptions.bind(builder)} />);
+
+      DIV = autocomplete.buildOptions();
+
+      expect(DIV.props.children.props.children.length).to.be.greaterThan(3);
+    });
+
+    it('has a "free-form" option when there is a text value');
+    it('does not have a "free-form" option when text value uses a bracket');
+  });
+
+  describe('#handleSelect', function () {
+    it('tells the dispatcher to set new value in single-select mode');
+    it('tells the dispatcher to add to values in multi-select mode');
+  });
+
+  describe('#onClose callback', function () {
+    it('is called when focus is lost');
+    it('is called when item is selected in single-select mode');
+    it('passes selected value object');
+    it('passes string value if no value object selected');
+    it('passes selected values array if in multi-select mode');
+  });
+
+  describe('#onSelect callback', function () {
+    it('is called when value is selected');
+    it('passes selected value object');
+    it('passes string value if no value object selected');
+    it('passes selected values array if in multi-select mode');
+  });
+});

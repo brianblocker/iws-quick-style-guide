@@ -6,6 +6,7 @@ var Td;
 var React = require('react');
 
 Td = React.createClass({
+  mixins: [React.addons.PureRenderMixin],
   render: function () {
 
     return (

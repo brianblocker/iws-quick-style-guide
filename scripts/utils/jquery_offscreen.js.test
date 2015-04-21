@@ -1,0 +1,35 @@
+var $ = require('jquery');
+
+describe('jQuery offscreen extension', function () {
+  describe(':offscreen-top', function () {
+    it('is defined', function () {
+      expect($.expr[':']['offscreen-top']).to.be.defined;
+    });
+
+    it('correctly detects when something is off of the top of the screen');
+  });
+
+  describe(':offscreen-right', function () {
+    it('is defined', function () {
+      expect($.expr[':']['offscreen-right']).to.be.defined;
+    });
+
+    it('correctly detects when something is off the right of the screen');
+  });
+
+  describe(':offscreen-bottom', function () {
+    it('is defined', function () {
+      expect($.expr[':']['offscreen-bottom']).to.be.defined;
+    });
+
+    it('correctly detects when something is off the bottom of the screen');
+  });
+
+  describe(':offscreen-left', function () {
+    it('is defined', function () {
+      expect($.expr[':']['offscreen-left']).to.be.defined;
+    });
+
+    it('correctly detects when something is off the left of the screen');
+  });
+});

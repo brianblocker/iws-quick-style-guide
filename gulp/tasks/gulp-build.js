@@ -1,67 +1,43 @@
 var gulp            = require('gulp');
-var gutil           = require('gulp-util');
-var browserify      = require('browserify');
 var config          = require('../gulp_config');
-var resolve         = require('resolve');
-var getNPMPackages  = require('../util/get_npm_packages');
 var bundleLogger    = require('../util/bundle_logger');
-var handleErrors    = require('../util/handle_errors');
-var package_path    = '../../package.json';
-var source          = require('vinyl-source-stream');
-var watchify        = require('watchify');
-var reactify        = require('reactify');
-var streamify       = require('gulp-streamify');
-var uglify          = require('gulp-uglify');
+var generators      = require('../util/bundle_generators');
 
 function vendor () {
-  var brwsrfy;
-  var stream;
+  var bundler = generators.vendor();
 
-  brwsrfy = browserify({
-    debug: false//config.browserify.debug
+  bundleLogger.start('vendor');
+
+  generators.bundle(bundler, config.browserify.vendor.outputName, {
+    uglify: false,
+    dest:   config.browserify.bundleConfig.dest,
+    log_files: true
   });
-
-  getNPMPackages(package_path).forEach(function (id) {
-    gutil.log('Adding', gutil.colors.green(id), 'to bundle');
-    brwsrfy.require(resolve.sync(id), {expose: id});
-  });
-
-  brwsrfy.require(resolve.sync('react/addons'), {expose: 'react/addons'});
-
-  stream = brwsrfy.bundle().pipe(source(config.browserify.vendor.outputName));
-
-  stream.pipe(streamify(uglify({})));
-  stream.pipe(gulp.dest(config.browserify.bundleConfig.dest));
 };
 
 gulp.task('vendor', vendor);
 
 function app () {
-  var bundler;
+  config.browserify.bundleConfig.entries.forEach(function (entry) {
+    var src     = config.src + '/' + entry + '.js';
+    var output  = entry + config.browserify.bundleConfig.outputName;
+    var bundler = generators.app(entry, src, true);
 
-  bundler = watchify(browserify(config.browserify.bundleConfig.entries, {
-    debug: config.browserify.debug
-  }));
+    bundler.on('update', function () {
+      bundleLogger.restart(entry);
 
-  bundler.transform(reactify);
+      generators.bundle(bundler, output, {
+        dest: config.browserify.bundleConfig.dest,
+        log_files: true
+      });
+    });
 
-  getNPMPackages(package_path).forEach(function (id) {
-    bundler.external(id);
+    bundleLogger.start(entry);
+    generators.bundle(bundler, output, {
+      dest: config.browserify.bundleConfig.dest,
+      log_files: true
+    });
   });
-
-  bundler.on('update', rebundle.bind(null, bundler));
-
-  return rebundle(bundler);
 }
 
 gulp.task('app', app);
-
-function rebundle (bundler) {
-  bundleLogger.start();
-
-  return bundler.bundle()
-    .on('error', handleErrors)
-    .on('end', bundleLogger.end)
-    .pipe(source(config.browserify.bundleConfig.outputName))
-    .pipe(gulp.dest(config.browserify.bundleConfig.dest));
-}

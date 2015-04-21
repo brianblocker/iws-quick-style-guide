@@ -1,13 +1,25 @@
 var gutil = require('gulp-util');
 
 module.exports = {
-  start: function () {
-    gutil.log('Running', gutil.colors.green('bundle'), '...');
+  start: function (type) {
+    var message = [type || '', 'bundle'].join(' ');
+
+    gutil.log('Running', gutil.colors.green(message), '...');
+  },
+  restart: function (type) {
+    var message = [type || '', 'bundle'].join(' ');
+
+    gutil.log('Re-running', gutil.colors.green(message), '...');
   },
   adding: function (file, message) {
-    gutil.log('Adding', gutil.colors.green('./' + path ), message);
+    var regex = /iws-quick-style-guide\/(.*)/i;
+    var path  = file.match(regex)[1];
+
+    gutil.log('Adding to', message, gutil.colors.green('./' + path ));
   },
-  end: function () {
-    gutil.log('Finished', gutil.colors.green('bundle'));
+  end: function (type) {
+    var message = [type || '', 'bundle'].join(' ');
+
+    gutil.log('Finished', gutil.colors.green(message));
   }
 };

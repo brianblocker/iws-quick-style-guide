@@ -80,7 +80,7 @@ function bundle (bundler, out_name, options) {
     stream.pipe(streamify(uglify({})));
   }
 
-  stream.pipe(gulp.dest(options.dest));
+  return stream.pipe(gulp.dest(options.dest));
 }
 
 module.exports = {

@@ -10,6 +10,12 @@
 @danger:        #f00;
 @unactionable:  #808080;
 
+@alarm-color:           @dark;
+@ack-alarm-color:       fade(@alarm-color, 50%);
+@crit-alarm-color:      @danger;
+@crit-ack-alarm-color:  fade(@crit-alarm-color, 50%);
+@cleared-alarm-color:   @muted-text;
+
 @subtle-actionable: fade(@actionable, 50%);
 @subtle-active:     fade(@active, 25%);
 @subtle-light:      fade(@light, 25%);

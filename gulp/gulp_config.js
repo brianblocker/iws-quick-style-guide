@@ -25,7 +25,7 @@ var config = {
     debug:      true,
     extensions: ['.jsx'],
     bundleConfig: {
-      entries:    ['app', 'cases'],
+      entries:    ['app', 'cases', 'alarms'],
       dest:       dest + '/js',
       outputName: '_bundle.js',
       exts:       ['.js', '.jsx'],

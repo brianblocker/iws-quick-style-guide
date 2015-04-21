@@ -20,6 +20,10 @@ Button = React.createClass({
     var text      = this.props.text ? (<span className="text">{this.props.text}</span>) : null;
     var props;
 
+    if (this.props.feaux) {
+      classes = ['feaux-button'];
+    }
+
     if (this.props.className) {
       classes.push(this.props.className);
     }

@@ -45,6 +45,10 @@
     background-color: @light;
     color:            @actionable;
   }
+
+  &.block {
+    display: block;
+  }
 }
 
 .feaux-button {
@@ -59,13 +63,13 @@
 }
 
 .button-group {
+  white-space: nowrap;
+
   .button + .button {
     margin-left: 1px;
   }
 
   &.button-drop {
-    white-space: nowrap;
-
     .button:first-child {
       float:        right;
       margin-left:  0;
@@ -78,6 +82,35 @@
       margin-left:  0;
       margin-right: @standard-height + 1;
       overflow:     hidden;
+    }
+  }
+
+  &.piped {
+
+    .feaux-button + .feaux-button {
+      padding-right: @standard-padding + 1;
+    }
+
+    .feaux-button + .feaux-button:after {
+      content:      '';
+      position:     relative;
+      left:         @standard-padding + 1;
+      border-right: 1px solid @subtle-dark;
+    }
+
+    .feaux-button:first-child {
+      float:        right;
+      margin-left:  0;
+      text-algin:   center;
+      width:        @standard-height;
+    }
+
+    .feaux-button:last-child {
+      display:      block;
+      margin-left:  0;
+      margin-right: @standard-height;
+      overflow:     hidden;
+
     }
   }
 }

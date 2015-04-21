@@ -44,6 +44,9 @@
   background-color: #f2f2f2;
   color: #4d4d4d;
 }
+.button.block {
+  display: block;
+}
 .feaux-button {
   background-color: transparent;
   color: #4d4d4d;
@@ -53,11 +56,11 @@
   color: #005cb9;
   background-color: transparent;
 }
+.button-group {
+  white-space: nowrap;
+}
 .button-group .button + .button {
   margin-left: 1px;
-}
-.button-group.button-drop {
-  white-space: nowrap;
 }
 .button-group.button-drop .button:first-child {
   float: right;
@@ -69,6 +72,27 @@
   display: block;
   margin-left: 0;
   margin-right: 31px;
+  overflow: hidden;
+}
+.button-group.piped .feaux-button + .feaux-button {
+  padding-right: 11px;
+}
+.button-group.piped .feaux-button + .feaux-button:after {
+  content: '';
+  position: relative;
+  left: 11px;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+.button-group.piped .feaux-button:first-child {
+  float: right;
+  margin-left: 0;
+  text-algin: center;
+  width: 30px;
+}
+.button-group.piped .feaux-button:last-child {
+  display: block;
+  margin-left: 0;
+  margin-right: 30px;
   overflow: hidden;
 }
 .table-wrapper {
@@ -459,9 +483,31 @@ caption.list-filter {
 .fv-autocomplete .option.unselectable {
   font-style: italic;
 }
+.alarm {
+  color: #000000;
+}
+.alarm-acknowledged {
+  color: rgba(0, 0, 0, 0.5);
+}
+.alarm-acknowledged-critical {
+  color: rgba(255, 0, 0, 0.5);
+}
+.alarm-critical {
+  color: #ff0000;
+}
+.alarm-acknowledged-normal {
+  color: rgba(0, 0, 0, 0.5);
+}
+.alarm-normal {
+  color: #000000;
+}
+.alarm-cleared {
+  color: rgba(0, 0, 0, 0.25);
+}
 .nodata {
   color: rgba(0, 0, 0, 0.25);
   font-style: italic;
+  white-space: nowrap;
 }
 .muted {
   color: rgba(0, 0, 0, 0.25);

@@ -87,7 +87,7 @@ describe('FilterBox', function () {
 
     it('has correct list of available criteria types', function () {
       expect(criteria.definition).to.include.keys(
-        'well', 'reporter', 'created', 'created_between', 'created_gt', 'created_lt',
+        'well', 'reporter', 'reported', 'reported_between', 'reported_gt', 'reported_lt',
         'tags', 'priority', 'priority_gt', 'priority_lt', 'issue_type', 'issue_subtype'
       );
     });
@@ -194,7 +194,7 @@ describe('FilterBox', function () {
         var vals = this.builder.matchCriteria('date');
 
         expect(vals).to.include.keys(
-          'created', 'created_between', 'created_gt', 'created_lt'
+          'reported', 'reported_between', 'reported_gt', 'reported_lt'
         );
 
         vals = this.builder.matchCriteria('pri');
@@ -237,7 +237,7 @@ describe('FilterBox', function () {
 
         expect(vals.length).to.be.greaterThan(2);
         expect(vals[0].value).to.not.be.undefined;
-        expect(vals[0].text).to.not.be.undefined;
+        expect(vals[0].label).to.not.be.undefined;
       });
     });
 

@@ -4,7 +4,7 @@ var Autocomplete  = require('./autocomplete.jsx');
 var sinon         = require('sinon');
 var criteria      = require('./filter_box_definition');
 
-xdescribe('Autocomplete', function () {
+describe('Autocomplete', function () {
   afterEach(function (done) {
     React.unmountComponentAtNode(document.body);
 

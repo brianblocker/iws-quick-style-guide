@@ -4,7 +4,8 @@ var criticals  = [true, false, false, false];
 var codes      = ['C2080', 'AF97', 'Down'];
 var messages   = ['Communication failure', 'underload fault', 'ground fault', 'motor overload'];
 var wells      = [{name: 'Lufko Walrus', status: 'Running'}, {name: 'Algers Marcus', status: 'Down'}, {name: 'Sparsec Muflo', status: 'Down'}];
-var cases      = [Array(), Array(2), Array(1), Array(), Array()]
+var cases      = [Array(), Array(2), Array(1), Array(), Array()];
+var priorities = [1,2,3,4,5];
 
 function randomize (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -28,6 +29,7 @@ function generate (num) {
       acknowledged: randomize(ack_states),
       cleared:      cleared,
       created_date: new Date(),
+      priority:     critical ? 1 : randomize(priorities),
       critical:     critical,
       code:         randomize(codes),
       normal:       normal,

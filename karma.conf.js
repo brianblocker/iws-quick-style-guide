@@ -11,7 +11,7 @@ module.exports = function (config) {
     ],
     frameworks: ['mocha', 'sinon-chai'],
     preprocessors: {
-
+      'scripts/**/*.test' : ['coverage']
     },
     plugins: [
       'karma-mocha',
@@ -25,7 +25,7 @@ module.exports = function (config) {
       'karma-sinon-chai'
     ],
     browsers: ['PhantomJS'],
-    reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
     port: 9876,
     colors: true,
     autoWatch: true,

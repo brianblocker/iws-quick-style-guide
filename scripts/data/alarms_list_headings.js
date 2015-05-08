@@ -7,6 +7,12 @@ values = [
     type:       'status'
   },
   {
+    minimal:    true,
+    name:       'priority',
+    title:      'P',
+    type:       'priority'
+  },
+  {
     name:       'details',
     title:      'Alarm details',
     type:       'alarm_details'
@@ -18,7 +24,7 @@ values = [
   },
   {
     name:       'date',
-    title:      'Date',
+    title:      'Detection Date/Time',
     type:       'date'
   },
   {

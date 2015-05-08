@@ -11,11 +11,7 @@ AlarmCollection = Backbone.Collection.extend({
     }, this);
   },
   comparator: function (first, second) {
-    if (first.get('critical')) {
-      return -1;
-    }
-
-    return 1;
+    return first.get('priority') - second.get('priority');
   }
 });
 

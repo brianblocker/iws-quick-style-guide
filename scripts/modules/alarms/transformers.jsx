@@ -18,9 +18,20 @@ module.exports = {
 
     return (
       <div>
-        {code} - {message}
+        <div>{code} - {message}</div>
+        <div className="muted small">Source: LWM</div>
       </div>
     )
+  },
+  priority: function (model) {
+    var priority    = model.get('priority');
+    var class_names = ['priority', 'priority-' + priority];
+
+    return (
+      <span className={class_names.join(' ')}>
+        {priority}
+      </span>
+    );
   },
   status: function (model) {
     var values = ['alarm'];
